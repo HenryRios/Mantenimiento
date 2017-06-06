@@ -9,13 +9,14 @@ using System.Web.Http.Description;
 
 namespace Api_Mantenimiento.Controllers
 {
+    [RoutePrefix("api")]
     public class clientesController : ApiController
     {
         MantenimientoEntities db = new MantenimientoEntities();
 
         // GET: api/clientes
         [HttpGet]
-        [Route("api/GetClientes", Name = "GetClientes")]
+        [Route("GetClientes", Name = "GetClientes")]
         public List<listar_cliente_Result> GetClientes()
         {
             List<listar_cliente_Result> clientes = db.listar_cliente().ToList();
@@ -23,7 +24,7 @@ namespace Api_Mantenimiento.Controllers
         }
 
         [HttpGet]
-        [Route("api/GetDepartamentos", Name = "GetDepartamentos")]
+        [Route("GetDepartamentos", Name = "GetDepartamentos")]
         public List<listar_departamento_Result> GetDepartamentos() {
 
             List<listar_departamento_Result> departamentos = db.listar_departamento().ToList();
@@ -33,7 +34,7 @@ namespace Api_Mantenimiento.Controllers
         // GET: api/clientes/5
         [HttpGet]
         [ResponseType(typeof(cliente))]
-        [Route("api/GetClientesxid", Name = "GetClientesxid")]
+        [Route("GetClientesxid/{id}", Name = "GetClientesxid")]
         public IHttpActionResult GetClientesxid(int id)
         {
             List<listar_cliente_id_Result> clientesxid = db.listar_cliente_id(id).ToList();
